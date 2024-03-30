@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selected Excel Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-inline-size: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        h2 {
+            font-size: 24px;
+            margin-block-start: 0;
+        }
+        table {
+            inline-size: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff; /* Blue header background */
+            color: white;
+        }
+        a {
+            display: block;
+            margin-block-start: 20px;
+            background-color: #007bff; /* Blue button background */
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .upload-form {
+            margin-block-start: 20px;
+        }
+        .upload-form label {
+            display: block;
+            margin-block-end: 10px;
+        }
+        .upload-form input[type="file"],
+        .upload-form input[type="text"],
+        .upload-form input[type="submit"] {
+            margin-block-end: 10px;
+            padding: 8px;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+        }
+        .upload-form input[type="submit"] {
+            background-color: #007bff; /* Blue button background */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .upload-form input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Selected Data</h2>
+    {{ html_table|safe }}
+   
+
+    <form class="upload-form" action="{{ url_for('submit_marksheets') }}" method="POST" enctype="multipart/form-data">
+        <label for="enrollment_no">Re-Check The Enrollment</label>
+        <input type="text" id="enrollment_no" name="enrollment_no" required><br><br>
+
+        <label for="10th_marksheet">Upload 10th Marksheet:</label>
+        <input type="file" id="10th_marksheet" name="10th_marksheet" accept=".pdf,.jpg,.jpeg,.png" required><br><br>
+
+        <label for="12th_marksheet">Upload 12th Marksheet:</label>
+        <input type="file" id="12th_marksheet" name="12th_marksheet" accept=".pdf,.jpg,.jpeg,.png" required><br><br>
+
+        
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>

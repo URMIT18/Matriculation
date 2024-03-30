@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Matriculation</title>
+    
+    <style>
+        /* CSS for the blue theme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Light gray background */
+            color: #333; /* Dark gray text */
+            margin: 0;
+            padding: 0;
+        }
+        
+        h2 {
+            color: #007bff; /* Blue heading */
+        }
+        
+        form {
+            margin-block-end: 0px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #007bff; /* Blue label text */
+        }
+        
+        input[type="text"], input[type="submit"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+            align-items: center;
+            align buttons with text: center;
+        }
+        
+        input[type="submit"] {
+            background-color: #007bff; /* Blue button background */
+            color: white;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        
+        table {
+            border-collapse: collapse;
+            inline-size: 100%;
+        }
+        
+        th, td {
+            border: 1px solid #007bff; /* Blue table borders */
+            padding: 8px;
+            text-align: start;
+        }
+        
+        th {
+            background-color: #007bff; /* Blue header background */
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #e6f2ff; /* Light blue alternate row background */
+        }
+    </style>
+</head>
+<body>
+    <h2>Online Matriculation Data</h2>
+    
+    <form action="{{ url_for('display') }}" method="GET">
+        <label for="search">Search by Enrollment Number or Name:</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="Search">
+    </form>
+     
+    <form action="{{ url_for('display_selected') }}" method="POST">
+        <input type="submit" value="Display Selected Data">  
+        <table>
+            <thead>
+                <tr>
+                    <th>Enrollment</th>
+                    <th>Name</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in df.iterrows() %}
+                <tr>
+                    <td>{{ row['enrollment '] }}</td>
+                    <td>{{ row['name '] }}</td>
+                    <td><input type="checkbox" name="selected_rows" value="{{ index }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
