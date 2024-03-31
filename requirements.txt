@@ -1,2 +1,4 @@
 flask
-gunicor
+gunicorn
+pandas
+sqlalchemy
